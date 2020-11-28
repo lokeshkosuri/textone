@@ -1,0 +1,111 @@
+<html>
+<body style="text-align: center;">
+    <button onclick="GFG_Fun()">
+        click here
+    </button>
+    <p id="GFG_DOWN"></p>
+    <script>
+        var jsonData = {
+            "menu":
+            {
+                "menuItem": [{
+                    "type": "SELECT",
+                    "title": "Trouble Type",
+                    "order": "1",
+                    "values": ["One", "Two", "Three"],
+                    "id": 2
+                },
+                {
+                    "type": "INPUT",
+                    "title": "Reason",
+                    "order": "2",
+                    "values": "",
+                    "id": 3
+                },
+                {
+                    "type": "TEXT",
+                    "title": "Reason",
+                    "order": "2",
+                    "values": "",
+                    "id": 1
+                },
+                {
+                    "type": "RADIO",  
+                    "title": "close chat without vReapir ticket submission",
+                    "order": 1, 
+                    "values": ["YES","NO"],
+                    "id":4
+                }
+                ]
+            }
+        };
+
+
+        var down = document.getElementById("GFG_DOWN");
+
+        var br = document.createElement("br");
+        function sortArrayValues(formData) {
+            return formData.sort((a, b) => (a.id > b.id) ? 1 : -1)
+        }
+        function GFG_Fun() {
+
+            var form = document.createElement("form");
+            form.setAttribute("method", "post");
+            form.setAttribute("action", "submit.php");
+
+            let formData = !!jsonData.menu ? jsonData.menu.menuItem : "";
+            formData = sortArrayValues(formData);
+            if (!!formData) {
+
+                formData.forEach((eachValue, index) => {
+                    let formField = "";
+                    switch (eachValue.type.toLowerCase()) {
+                        case "select":
+                            formField = document.createElement("SELECT");
+                            eachValue.values.forEach((each) => {
+                                var opt = document.createElement('option');
+                                opt.value = each;
+                                opt.innerHTML = each;
+                                formField.appendChild(opt);
+                            })
+                        break;
+
+                        case "input":
+                            formField = document.createElement("input");
+                            formField.setAttribute("type", "text");
+                            formField.setAttribute("name", "dob");
+                            formField.setAttribute("placeholder", "DOB");
+                        break;
+
+                        case "radio":
+                            eachValue.values.forEach((radiovalue)=>{
+                                let radioButon = '', labelField = '';
+                                radioButon = document.createElement("input");
+                                radioButon.setAttribute("type", "radio");
+                                radioButon.setAttribute("name", eachValue.title);
+                                radioButon.setAttribute("value", radiovalue);
+                                labelField = document.createElement("label");
+                                labelField.innerHTML = radiovalue;
+                                labelField.setAttribute("for", radiovalue);
+                                if(!!form) {
+                                    form.append(radioButon, labelField);    
+                                }
+                            })
+                        break;
+        
+                        case "text":
+                            formField = document.createElement("textarea");
+                            formField.setAttribute("maxlength", "1000");
+                        break;
+                    }
+                    !!formField ? form.appendChild(formField) : '';
+                    let br = document.createElement('br');
+                    form.appendChild(br);
+                })
+            } else {
+            }
+            down.appendChild(form);
+        }
+    </script>
+</body>
+</html>
