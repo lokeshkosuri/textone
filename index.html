@@ -1,10 +1,10 @@
 <html>
-<body style="text-align: center;">
+<body style="text-align:center;">
 <div class = "form-style-3">
 
-	<fieldset><legend>Lokesh Stuff</legend>
+	<fieldset><legend>Sample Dynamic Layout</legend>
 		
-    <p id="GFG_DOWN" class="form-style-3"></p>
+    <p id="GFG_DOWN" ></p>
 		<button type="submit" onclick="GFG_Fun()">
         		click here
     		</button>
@@ -17,21 +17,21 @@
                     "title": "Trouble Type",
                     "order": "1",
                     "values": ["One", "Two", "Three"],
-                    "id": 2
+                    "id": 1
                 },
                 {
                     "type": "INPUT",
-                    "title": "Reason",
+                    "title": "Main Reason",
                     "order": "2",
                     "values": "",
-                    "id": 3
+                    "id": 2
                 },
                 {
                     "type": "TEXT",
-                    "title": "Reason",
+                    "title": "Issue Reason",
                     "order": "2",
                     "values": "",
-                    "id": 1
+                    "id": 3
                 },
                 {
                     "type": "RADIO",  
@@ -70,7 +70,7 @@
                     let formField = "";
                     switch (eachValue.type.toLowerCase()) {
                         case "select":
-							let labelField1 = 'I am DropDown';
+							let labelField1 = eachValue.title+": ";
                             formField = document.createElement("SELECT");
 							form.append(labelField1);
                             eachValue.values.forEach((each) => {
@@ -83,16 +83,16 @@
                         break;
 
                         case "input":
-							let labelField2 = 'I am Input Field';
+							let labelField2 = eachValue.title+": ";
                             formField = document.createElement("input");
                             formField.setAttribute("type", "text");
                             formField.setAttribute("name", "dob");
-                            formField.setAttribute("placeholder", "DOB");
+                            formField.setAttribute("placeholder", "Enter Here");
 							form.append(labelField2);
                         break;
 
                         case "radio":
-							let labelField3 ='I am Radio Button';
+							let labelField3 =eachValue.title+": ";
 							form.append(labelField3);
 							let br = document.createElement('br');
 							form.appendChild(br);
@@ -113,11 +113,11 @@
 						case "submit":
                             formField = document.createElement("input");
                             formField.setAttribute("type", "submit");
-                            formField.setAttribute("value", "Submit");
+                            formField.setAttribute("name", eachValue.title+": ");
                         break;
         
                         case "text":
-							let labelField4 ='I am Message Box';
+							let labelField4 =eachValue.title+": ";
                             formField = document.createElement("textarea");
                             formField.setAttribute("maxlength", "1000");
 							form.append(labelField4);
@@ -126,6 +126,8 @@
                     !!formField ? form.appendChild(formField) : '';
                     let br = document.createElement('br');
                     form.appendChild(br);
+					let br1 = document.createElement('br');
+                    form.appendChild(br1);
                 })
             } else {
             }
@@ -141,6 +143,23 @@
 			display:block;
 			margin-bottom: 10px;
 		}
+		p{
+			color: #FFA0C9;
+			border-top: 1px solid #FFD2D2;
+			border-left: 1px solid #FFD2D2;
+			border-right: 1px solid #FFD2D2;
+			border-radius: 5px 5px 0px 0px;
+			-webkit-border-radius: 5px 5px 0px 0px;
+			-moz-border-radius: 5px 5px 0px 0px;
+			background: #FFF4F4;
+			padding: 0px 8px 3px 8px;
+			box-shadow: -0px -1px 2px #F1F1F1;
+			-moz-box-shadow:-0px -1px 2px #F1F1F1;
+			-webkit-box-shadow:-0px -1px 2px #F1F1F1;
+			font-weight: normal;
+			font-size: 15px;
+		}
+		
 		.form-style-3 label > span{
 			float: left;
 			width: 100px;
@@ -182,6 +201,7 @@
 			height:100px;
 		}
 		.form-style-3 input[type=text],
+		.form-style-3 input[type=placeholder],
 		.form-style-3 input[type=date],
 		.form-style-3 input[type=datetime],
 		.form-style-3 input[type=number],
@@ -219,13 +239,24 @@
 			-moz-border-radius: 3px;	
 			font-weight: bold;
 		}
+		button{
+			background: #EB3B88;
+			border: 1px solid #C94A81;
+			padding: 5px 15px 5px 15px;
+			color: #FFCBE2;
+			box-shadow: inset -1px -1px 3px #FF62A7;
+			-moz-box-shadow: inset -1px -1px 3px #FF62A7;
+			-webkit-box-shadow: inset -1px -1px 3px #FF62A7;
+			border-radius: 3px;
+			border-radius: 3px;
+			-webkit-border-radius: 3px;
+			-moz-border-radius: 3px;	
+			font-weight: bold;
+		}
 		.required{
 			color:red;
 			font-weight:normal;
 		}
-		.element.style {
-    			color: red;
-			}
 
 	</style>
 </div>
